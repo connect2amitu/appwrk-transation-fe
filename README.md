@@ -1,54 +1,32 @@
-# React + TypeScript + Vite
+# Introduction
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+You are going to build Transaction system for an office where Account Manager will be Managing Daily Expenses for Cash Inflow / Outflow.
 
-Currently, two official plugins are available:
+## Details
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+There will be two screens as following:
 
-## Expanding the ESLint configuration
+### 1. Office Transactions Grid
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+with 5 columns Date, Description, Credit, Debit & Running Balance should be displayed as following and Sorting should be done in such a way that latest transactions should come on the top.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Notes
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Running balance should be the balance that is remaining in the account.
+- Example:
+  - First entry (on 17 Feb) from the bottom in the table above is showing that 5000 have been credited to Office account so balance is 5k.
+  - On 18 Feb, There was an expense of 500 on snacks party so entry should be 500 to Debit column and running balance is now 4500.
+  - On 18 Feb, there is another expense of printing sheets worth 285, so running balance is 4215.
+  - On 20 Feb, There are some misc. expense worth 300 so now the running balance should be 1215.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 2. Add Transaction Page
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+When user clicks on “+ Add Transaction Page” it will show the “New Transaction Page”.
+
+#### Transaction type
+
+will be dropdown with one option can be selected at one time (Credit/Debit), Amount & Description should be required field.
+
+#### On Click of Save
+
+it will create new transaction record in Database and redirect to Office Transactions page
